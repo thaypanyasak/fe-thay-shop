@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   MapPin,
@@ -10,6 +8,7 @@ import {
   Instagram,
   Twitter,
 } from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -20,9 +19,12 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-12 h-12  bg-gradient-to-br from-green-400 to-gray-900 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-green-400">
                 <span className="text-white font-bold text-xl">
-                  <img
-                    src="./img/logo2.png"
-                    className="w-25 h-10 object-contain"
+                  <Image
+                    src="/img/logo2.png"
+                    alt="BasketStore Logo"
+                    width={100}
+                    height={40}
+                    className="object-contain"
                   />
                 </span>
               </div>
