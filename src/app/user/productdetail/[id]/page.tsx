@@ -42,9 +42,12 @@ const ProductDetail = () => {
           );
           console.log("Product details:", response.data);
           setProduct(response.data);
-        } catch (err: any) {
-          console.error("Error fetching product details:", err);
-          setError("Error fetching product details");
+        } catch (err) {
+          if (axios.isAxiosError(err)) {
+            console.error("Axios error:", err.message);
+          } else {
+            console.error("Unexpected error:", err);
+          }
         } finally {
           setIsLoading(false);
         }
