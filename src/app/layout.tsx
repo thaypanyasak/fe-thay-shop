@@ -3,7 +3,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/Components/Sidebar";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 
