@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { useProducts } from "./hooks/useProducts";
 import { Product, ProductFormData } from "@/app/types/product";
