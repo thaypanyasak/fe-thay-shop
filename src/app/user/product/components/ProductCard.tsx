@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Heart, ShoppingCart, Eye } from "lucide-react";
+import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/app/types/product";
 import { useCartStore } from "@/app/store/useCartStore";
@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useAddToCartMutation } from "../hooks/useAddToCart";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import Image from "next/image";
 
 type ProductCardProps = {
   product: Product;
@@ -62,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     checkInCart();
-  }, [user, product.id]);
+  }, [user, product.id, cartItems, setCartItems]);
 
   const toggleFavorite = (productId: number) => {
     setFavorites((prev) => {
@@ -118,10 +119,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     >
       <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:border-green-500/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20">
         <div className="relative overflow-hidden rounded-2xl mb-6 aspect-square">
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            width={500} // hoặc 400/600 tùy ảnh
+            height={500}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            unoptimized={product.image.startsWith("http") ? false : true}
           />
 
           <div
