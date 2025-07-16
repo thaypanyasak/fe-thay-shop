@@ -27,7 +27,7 @@ const ProductDetail = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  const { user, isLoggedIn } = useUserStore();
+  const { isLoggedIn } = useUserStore();
   const params = useParams<{ id?: string }>();
   const id = params?.id;
   const router = useRouter();
