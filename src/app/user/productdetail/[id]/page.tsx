@@ -172,10 +172,13 @@ const ProductDetail = () => {
                           : "border-white/20 hover:border-white/40"
                       }`}
                     >
-                      <img
-                        src={image}
-                        alt=""
+                      <Image
+                        src={image || "/fallback.png"}
+                        alt={`Thumbnail ${index}`}
+                        width={80}
+                        height={80}
                         className="w-full h-full object-cover"
+                        unoptimized
                       />
                     </button>
                   )
