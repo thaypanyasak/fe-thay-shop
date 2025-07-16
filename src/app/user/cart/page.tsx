@@ -40,7 +40,7 @@ const CartPage = () => {
     if (user?.id) {
       fetchCart();
     }
-  }, [user]);
+  }, [user, setCartItems]);
 
   const handleQuantityChange = async (
     productId: number,
