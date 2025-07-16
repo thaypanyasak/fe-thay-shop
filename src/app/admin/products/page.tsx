@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import { useProducts } from "./hooks/useProducts";
 import { Product, ProductFormData } from "@/app/types/product";
@@ -15,8 +14,6 @@ export default function AdminProductList() {
     addProduct,
     updateProduct,
     deleteProduct,
-    isAddingProduct,
-    isUpdatingProduct,
     isDeletingProduct,
   } = useProducts();
 
