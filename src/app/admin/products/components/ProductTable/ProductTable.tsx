@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import {
   flexRender,
@@ -16,13 +14,13 @@ import { createProductColumns } from "./column";
 import {
   Search,
   Package,
-  Filter,
   Grid,
   List,
   MoreHorizontal,
   Edit,
   Trash2,
 } from "lucide-react";
+import Image from "next/image";
 
 interface ProductTableProps {
   products: Product[];
@@ -80,12 +78,15 @@ export const ProductTable: React.FC<ProductTableProps> = ({
             <div className="flex items-start space-x-3">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
                 {product.image ? (
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={64}
+                    height={64}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.style.display = "none";
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
                     }}
                   />
                 ) : (
@@ -156,12 +157,15 @@ export const ProductTable: React.FC<ProductTableProps> = ({
             {/* Product Image */}
             <div className="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden relative">
               {product.image ? (
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  width={300}
+                  height={300}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
-                    e.currentTarget.style.display = "none";
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
                   }}
                 />
               ) : (
