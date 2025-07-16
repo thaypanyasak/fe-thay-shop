@@ -57,8 +57,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         if (alreadyInDb) {
           setIsInCart(true);
         }
-      } catch (error) {
-        console.error("Failed to check cart from DB:", error);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          console.error("Failed to check cart from DB:", error.message);
+        } else {
+          console.error("Unknown error occurred while checking cart.");
+        }
       }
     };
 
