@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Product } from "@/app/types/product";
 
 type AddToCartPayload = {
   userId: number;
