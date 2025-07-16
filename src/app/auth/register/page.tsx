@@ -9,7 +9,6 @@ import {
   EyeOff,
   Mail,
   Lock,
-  User,
   ArrowRight,
   CircleUser,
   Facebook,
