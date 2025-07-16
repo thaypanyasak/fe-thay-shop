@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCartStore } from "@/app/store/useCartStore";
 import { useUserStore } from "@/app/store/useUserStore";
 import axios from "axios";
+import Image from "next/image";
 import {
   ArrowLeft,
   CreditCard,
@@ -21,21 +22,21 @@ const CartPage = () => {
     useCartStore();
   const { user } = useUserStore();
 
-  const fetchCart = async () => {
-    try {
-      const res = await axios.get(
-        "https://thay-shop.onrender.com/api/cart/view",
-        {
-          params: { userId: user?.id },
-        }
-      );
-      setCartItems(res.data);
-    } catch (err) {
-      console.error("Error fetching cart:", err);
-    }
-  };
-
   useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await axios.get(
+          "https://thay-shop.onrender.com/api/cart/view",
+          {
+            params: { userId: user?.id },
+          }
+        );
+        setCartItems(res.data);
+      } catch (err) {
+        console.error("Error fetching cart:", err);
+      }
+    };
+
     if (user?.id) {
       fetchCart();
     }
@@ -153,10 +154,12 @@ const CartPage = () => {
 
                   <div className="relative z-10 flex items-center gap-8">
                     <div className="relative overflow-hidden rounded-2xl w-32 h-32 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                      <img
+                      <Image
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover rounded-2xl"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
