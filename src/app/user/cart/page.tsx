@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useCartStore } from "@/app/store/useCartStore";
 import { useUserStore } from "@/app/store/useUserStore";
 import axios from "axios";
