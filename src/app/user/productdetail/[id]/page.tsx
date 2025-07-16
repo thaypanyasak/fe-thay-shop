@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useUserStore } from "../../../store/useUserStore";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { Product } from "../../../types/product";
 
@@ -131,11 +132,19 @@ const ProductDetail = () => {
           <div className="space-y-4">
             <div className="relative group">
               <div className="aspect-square bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 hover:border-green-500/50 transition-all duration-500">
-                <img
-                  src={productImages[selectedImageIndex] || product?.image}
+                <Image
+                  src={
+                    productImages[selectedImageIndex] ||
+                    product?.image ||
+                    "/fallback.png"
+                  }
                   alt={product?.name || "Product"}
+                  width={500}
+                  height={500}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  unoptimized={true}
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
                 {product?.stock && product.stock < 10 && (
