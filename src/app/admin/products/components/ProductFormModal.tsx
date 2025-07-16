@@ -20,11 +20,9 @@ export const ProductFormModal = ({
   showForm,
   editProduct,
   setEditProduct,
-  resetForm,
   setShowForm,
   onSubmit,
 }: ProductFormModalProps) => {
-  const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
 
   const { form, resetForm: resetProductForm } = useProductForm({
@@ -32,7 +30,6 @@ export const ProductFormModal = ({
       onSubmit(data, editProduct);
       setShowForm(false);
       resetProductForm();
-      setImageError(false);
       setImageLoading(false);
     },
     editProduct,
@@ -42,7 +39,6 @@ export const ProductFormModal = ({
     resetProductForm();
     setEditProduct(null);
     setShowForm(false);
-    setImageError(false);
     setImageLoading(false);
   };
 
@@ -51,19 +47,16 @@ export const ProductFormModal = ({
     fieldHandler: (value: string) => void
   ) => {
     fieldHandler(url);
-    setImageError(false);
     if (url.trim()) {
       setImageLoading(true);
     }
   };
 
   const handleImageError = () => {
-    setImageError(true);
     setImageLoading(false);
   };
 
   const handleImageLoad = () => {
-    setImageError(false);
     setImageLoading(false);
   };
 
