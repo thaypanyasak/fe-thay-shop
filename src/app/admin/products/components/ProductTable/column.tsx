@@ -1,6 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Product } from "../../../../types/product";
 import { Edit, Trash } from "lucide-react";
+import Image from "next/image";
 
 const columnHelper = createColumnHelper<Product>();
 
@@ -26,12 +27,15 @@ export const createProductColumns = ({
         <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
           <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
             {product.image ? (
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
+                width={48}
+                height={48}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
                 }}
               />
             ) : (
