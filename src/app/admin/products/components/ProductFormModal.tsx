@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Product, ProductFormData } from "@/app/types/product";
 import { useProductForm } from "../hooks/useProductForm";
