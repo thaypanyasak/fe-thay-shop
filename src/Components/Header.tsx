@@ -5,6 +5,7 @@ import { ShoppingCart, Menu, User, Heart, Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/app/store/useUserStore";
 import { useCartItems } from "@/app/hooks/useCartItems";
+import Image from "next/image";
 
 const Header = () => {
   const { user, isLoggedIn, logout } = useUserStore();
@@ -33,8 +34,10 @@ const Header = () => {
             <div className="relative">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-gray-900 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-green-400">
                 <span className="text-white font-bold text-xl">
-                  <img
+                  <Image
                     src="/img/logo2.png"
+                    width={100}
+                    height={50}
                     className="w-25 h-10 object-contain"
                     alt="Logo"
                   />
@@ -105,23 +108,31 @@ const Header = () => {
                     </p>
                   ) : (
                     <ul className="space-y-4">
-                      {cartItems.map((item: any) => (
-                        <li key={item.id} className="flex gap-3 items-center">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-12 h-12 object-cover rounded-lg border border-gray-700"
-                          />
-                          <div className="flex-1">
-                            <p className="font-medium text-sm line-clamp-1">
-                              {item.name}
-                            </p>
-                            <p className="text-xs text-gray-400">
-                              Qty: {item.quantity} | ${item.price}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
+                      {cartItems.map(
+                        (item: {
+                          id: number;
+                          image: string;
+                          name: string;
+                          price: number;
+                          quantity: number;
+                        }) => (
+                          <li key={item.id} className="flex gap-3 items-center">
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              className="w-12 h-12 object-cover rounded-lg border border-gray-700"
+                            />
+                            <div className="flex-1">
+                              <p className="font-medium text-sm line-clamp-1">
+                                {item.name}
+                              </p>
+                              <p className="text-xs text-gray-400">
+                                Qty: {item.quantity} | ${item.price}
+                              </p>
+                            </div>
+                          </li>
+                        )
+                      )}
                     </ul>
                   )}
 
