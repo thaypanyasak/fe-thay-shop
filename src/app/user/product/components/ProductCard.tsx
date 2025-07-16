@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
+import { Heart, ShoppingCart, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/app/types/product";
 import { useCartStore } from "@/app/store/useCartStore";
