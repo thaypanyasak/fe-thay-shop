@@ -353,7 +353,8 @@ export default function AdminCategoryList() {
                       onChange: ({ value }) =>
                         !value ? "Tên danh mục là bắt buộc" : undefined,
                     }}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Tên danh mục *
@@ -376,11 +377,10 @@ export default function AdminCategoryList() {
                         )}
                       </div>
                     )}
-                  />
+                  </form.Field>
 
-                  <form.Field
-                    name="description"
-                    children={(field) => (
+                  <form.Field name="description">
+                    {(field) => (
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Mô tả
@@ -397,7 +397,7 @@ export default function AdminCategoryList() {
                         />
                       </div>
                     )}
-                  />
+                  </form.Field>
 
                   <div className="flex gap-4 pt-6">
                     <form.Subscribe
@@ -405,7 +405,8 @@ export default function AdminCategoryList() {
                         state.canSubmit,
                         state.isSubmitting,
                       ]}
-                      children={([canSubmit, isSubmitting]) => (
+                    >
+                      {([canSubmit, isSubmitting]) => (
                         <button
                           type="submit"
                           disabled={!canSubmit || isSubmitting}
@@ -418,7 +419,8 @@ export default function AdminCategoryList() {
                             : "Thêm danh mục"}
                         </button>
                       )}
-                    />
+                    </form.Subscribe>
+
                     <button
                       type="button"
                       onClick={handleCancel}
