@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    domains: ["static.nike.com"],
+    domains: ["static.nike.com", "images.unsplash.com"],
   },
 };
 
