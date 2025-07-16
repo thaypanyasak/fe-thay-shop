@@ -5,9 +5,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:5000/api/:path*", // Proxy to Backend
+        destination: "https://thay-shop.onrender.com/api/:path*",
       },
     ];
+  },
+
+  images: {
+    domains: ["static.nike.com"],
   },
 };
 
