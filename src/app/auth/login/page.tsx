@@ -33,7 +33,7 @@ const Login = () => {
       setUser(JSON.parse(storedUser));
       setIsLoggedIn(true);
     }
-  }, []);
+  }, [setUser, setIsLoggedIn]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,8 +59,12 @@ const Login = () => {
           router.push("/user/product");
         }
       }
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || "Login failed");
+      } else {
+        setError("Login failed");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -206,7 +210,7 @@ const Login = () => {
 
         <div className="text-center mt-6">
           <p className="text-gray-400">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <a
               href="/auth/register"
               className="text-green-400 hover:text-green-300 font-medium transition-colors"
