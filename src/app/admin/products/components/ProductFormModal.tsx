@@ -3,14 +3,9 @@
 import { useState } from "react";
 import { Product, ProductFormData } from "@/app/types/product";
 import { useProductForm } from "../hooks/useProductForm";
-import {
-  Box,
-  Edit,
-  Image as ImageIcon,
-  DollarSign,
-  Package,
-  X,
-} from "lucide-react";
+import { Box, X, PictureInPicture } from "lucide-react";
+
+import Image from "next/image";
 
 interface ProductFormModalProps {
   showForm: boolean;
@@ -94,11 +89,11 @@ export const ProductFormModal = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               form.handleSubmit();
             }}
             className="space-y-6"
           >
+            {/* Product Name */}
             <form.Field
               name="name"
               validators={{
@@ -130,6 +125,7 @@ export const ProductFormModal = ({
               )}
             </form.Field>
 
+            {/* Description */}
             <form.Field name="description">
               {(field) => (
                 <div>
@@ -150,10 +146,12 @@ export const ProductFormModal = ({
               )}
             </form.Field>
 
+            {/* Image URL */}
             <form.Field name="image">
               {(field) => (
                 <div>
-                  <label className="font-medium text-sm text-gray-700 mb-2 block">
+                  <label className="font-medium text-sm text-gray-700 mb-2 block flex items-center">
+                    <PictureInPicture className="mr-2" />
                     Image URL
                   </label>
                   <input
@@ -176,13 +174,16 @@ export const ProductFormModal = ({
                             <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
                           </div>
                         )}
-                        <img
+                        <Image
                           src={field.state.value}
-                          alt="Preview"
+                          alt="Product Preview"
+                          width={128}
+                          height={128}
                           onError={handleImageError}
                           onLoad={handleImageLoad}
                           className="w-full h-full object-cover"
                           style={{ opacity: imageLoading ? 0 : 1 }}
+                          unoptimized // nếu ảnh từ URL ngoài không được phép tối ưu
                         />
                       </div>
                     ) : (
@@ -195,6 +196,7 @@ export const ProductFormModal = ({
               )}
             </form.Field>
 
+            {/* Price + Stock */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <form.Field
                 name="price"
@@ -253,6 +255,7 @@ export const ProductFormModal = ({
               </form.Field>
             </div>
 
+            {/* Buttons */}
             <div className="flex gap-4 pt-4 border-t border-gray-200">
               <button
                 type="button"
